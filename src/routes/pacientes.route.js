@@ -1,23 +1,14 @@
 import { Router } from "express";
+import { PacienteController } from "../controllers/pacientes.js";
 
 export const router = Router();
 
-router.get('/pacientes', async (req, res) => {
-    res.send('Listado de pacientes');
-});
+router.get('/pacientes', PacienteController.getAll);
 
-router.get('/paciente/:id', async (req, res) => {
-    res.send('Busqueda de paciente por id');
-});
+router.get('/paciente/:id', PacienteController.getById);
 
-router.post('/paciente', async (req, res) => {
-    res.send('Crear paciente');
-});
+router.post('/paciente', PacienteController.create);
 
-router.put('/paciente/:id', async (req, res) => {
-    res.send('actualizar paciente');
-});
+router.put('/paciente/:id', PacienteController.update);
 
-router.delete('/paciente/:id', async (req, res) => {
-    res.send('Eliminar paciente');
-});
+router.delete('/paciente/:id', PacienteController.delete);

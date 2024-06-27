@@ -5,9 +5,9 @@ import { Paciente } from './db.js';
 
 const app = express();
 
-app.use(morgan('dev')); 
-app.use(json());
-app.disable('x-powered-by');
+app.use(morgan('dev')); // middleware para visualizar las peticiones que hace el cliente al servidor en consola
+app.use(json()); // middleware para que el servidor pueda entender los datos que envía el cliente en formato JSON
+app.disable('x-powered-by'); // deshabilita la cabecera X-Powered-By para mayor seguridad
 
 
 app.use('/api/v1',router);
