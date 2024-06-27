@@ -1,14 +1,17 @@
-
+import { PacienteModel } from "../models/mysql/pacientes.js";
 
 export class PacienteController {
     static async getAll(req, res) {
-        res.send('Listado de pacientes');
+        const pacientes= await PacienteModel.getAll();
+        res.json(pacientes);
     }
     static async getById(req, res) {
-        res.send('Busqueda de paciente por id');
+        const paciente= await PacienteModel.getById(req.params.id);
+        res.json(paciente);
     }
     static async create(req, res) {
-        res.send('Crear paciente');
+        const respuestaCrearPaciente= await PacienteModel.create(req.body);
+        res.json(respuestaCrearPaciente);
     }
     static async update(req, res){
         res.send('actualizar paciente');

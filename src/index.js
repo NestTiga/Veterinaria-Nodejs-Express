@@ -1,7 +1,7 @@
 import express, { json } from 'express';
 import morgan from 'morgan';
 import { router } from './routes/pacientes.route.js';
-import { Paciente } from './db.js';
+//import { Paciente } from './db.js';
 
 const app = express();
 
