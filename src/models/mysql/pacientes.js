@@ -1,4 +1,4 @@
-import { Paciente } from "../../db.js";
+import { Paciente } from "../../database/models/paciente.js";
 
 export class PacienteModel {
     static async getAll(){
