@@ -14,9 +14,13 @@ export class PacienteController {
         res.json(respuestaCrearPaciente);
     }
     static async update(req, res){
-        res.send('actualizar paciente');
+        const {id}= req.params;
+        const respuestaActualizarPaciente= await PacienteModel.update(id, req.body);
+        res.json(respuestaActualizarPaciente);
     }
     static async delete(req, res){
-        res.send('Eliminar paciente');
+        const {id}= req.params;
+        const respuesta= await PacienteModel.deleteById(id);
+        res.json({eliminado:respuesta});
     }
 }
