@@ -1,4 +1,5 @@
 import { Paciente } from "../../database/models/paciente.js";
+import { FindError } from "../../error/error.js";
 
 export class PacienteModel {
   static async getAll() {
@@ -10,6 +11,10 @@ export class PacienteModel {
         id_paciente: id,
       },
     });
+
+    if (!pacienteEncontrado) {
+      throw new FindError(`No se encontró al cliente con el id ${id}`, 404);
+    }
 
     return pacienteEncontrado;
   }
@@ -39,8 +44,7 @@ export class PacienteModel {
       });
 
       return respuestaEliminar === 1 ? true : false;
-    }else
-    {
+    } else {
       return false;
     }
   }
