@@ -25,9 +25,16 @@ export class PacienteController {
     );
     res.json(respuestaActualizarPaciente);
   }
-  static async delete(req, res) {
+  static async delete(req, res, next) {
     const { id } = req.params;
-    const respuesta = await PacienteModel.deleteById(id);
-    res.json({ eliminado: respuesta });
+    try {
+      const respuesta = await PacienteModel.deleteById(id);
+      res.json({
+        estado: respuesta,
+        mensaje: `Se eliminaron los datos del paciente con el id ${id} de forma exitosa.`,
+      });
+    } catch (err) {
+      next(err); // next() se encarga de enviar el error al middleware de error
+    }
   }
 }

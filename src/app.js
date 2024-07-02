@@ -16,6 +16,9 @@ app.use("/api/v1", router);
  */
 app.use(function (err, req, res, next) {
   if (err instanceof FindError) {
-    return res.status(err.statusCode).json({ error: err.message });
+    return res.status(err.statusCode).json({
+      estado: err.estado,
+      error: err.message,
+    });
   } // Si el error es de tipo FindError, se envía un mensaje de error personalizado
 });
