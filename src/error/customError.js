@@ -4,4 +4,11 @@ export class FindError extends Error {
     this.statusCode = statusCode;
     this.estado = estado;
   }
+  toJson(){
+    return {
+      status: this.statusCode,
+      estado: this.estado,
+      message: this.message
+    }
+  }
 }

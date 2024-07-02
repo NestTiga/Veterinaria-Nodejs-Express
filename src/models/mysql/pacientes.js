@@ -1,5 +1,5 @@
 import { Paciente } from "../../database/models/paciente.js";
-import { FindError } from "../../error/error.js";
+import { FindError } from "../../error/customError.js";
 
 export class PacienteModel {
   // Método que obtiene todos los pacientes
