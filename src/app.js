@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import morgan from "morgan";
 import { router } from "./routes/pacientes.route.js";
-import { FindError } from "./error/error.js";
+import { errorMiddleware } from "./middleware/error.js";
 
 export const app = express();
 
@@ -14,18 +14,4 @@ app.use("/api/v1", router);
 /**
  * Middleware para manejar errores
  */
-app.use(function (err, req, res, next) {
-  // Si el error es de tipo FindError, se envía un mensaje de error personalizado
-  if (err instanceof FindError) {
-    return res.status(err.statusCode).json({
-      estado: err.estado,
-      error: err.message,
-    });
-  } else {
-    return res.status(400).json({
-      // NOTA!!!!!: corregir al status después de las validaciones de datos  <---------------------ALERTA
-      estado: false,
-      error: err.message,
-    });
-  }
-});
+app.use(errorMiddleware);
