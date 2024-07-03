@@ -1,7 +1,7 @@
 
 export const errorMiddleware = function (err, req, res, next) {
   let errorObject;
-
+ 
   if (typeof err.toJson === "function") {
     errorObject = err.toJson();
   } else {
